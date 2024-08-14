@@ -2,7 +2,6 @@ package com.inove.sorteioCotas.controllers;
 
 
 import com.inove.sorteioCotas.models.Cotas;
-import com.inove.sorteioCotas.models.User;
 import com.inove.sorteioCotas.repository.CotasRepository;
 import com.inove.sorteioCotas.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,5 @@ public class CotasController {
     public Page<Cotas> findAll(Pageable pageable) {
         return cotasRepository.findAll(pageable);
     }
-
-
-
 
 }

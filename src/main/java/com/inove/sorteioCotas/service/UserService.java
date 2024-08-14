@@ -23,14 +23,14 @@ public class UserService {
     }
 
     public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+        return userRepository.findById(String.valueOf(id));
     }
 
-    public User save(User usuario) {
-        return userRepository.save(usuario);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     public void deleteById(Long id) {
-        userRepository.deleteById(id);
+        userRepository.deleteById(String.valueOf(id));
     }
 }

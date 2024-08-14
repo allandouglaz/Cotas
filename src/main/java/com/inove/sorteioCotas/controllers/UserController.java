@@ -3,7 +3,6 @@ package com.inove.sorteioCotas.controllers;
 import com.inove.sorteioCotas.models.User;
 import com.inove.sorteioCotas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,11 +39,15 @@ public class UserController {
             return ResponseEntity.status(500).build();
         }
     }
+    @GetMapping("/profile")
+    public String getUserProfile() {
+        return "This is a protected endpoint. Only authenticated users can access this.";
+    }
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User usuario) {
+    public ResponseEntity<User> create(@RequestBody User user) {
         try {
-            User savedUser = userService.save(usuario);
+            User savedUser = userService.save(user);
             return ResponseEntity.ok(savedUser);
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
@@ -57,7 +60,7 @@ public class UserController {
             if (userService.findById(id).isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
-            user.setId(id);
+            user.setId(String.valueOf(id));
             User updatedUser = userService.save(user);
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {

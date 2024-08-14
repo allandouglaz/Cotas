@@ -40,7 +40,7 @@ public class CotaSorteioService {
      */
 
     public List<Cotas> gerarCotasClient(Long userId, int quantidade) {
-        User user = userRepository.findById(userId)
+        User user = userRepository.findById(String.valueOf(userId))
                 .orElseThrow(() -> new RuntimeException("Cliente Não encontrado."));
 
         Random random = new Random();
