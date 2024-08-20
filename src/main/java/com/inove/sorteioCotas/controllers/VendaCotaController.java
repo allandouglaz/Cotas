@@ -71,7 +71,6 @@ public class VendaCotaController {
         if (qtde <= 0) {
             return ResponseEntity.badRequest().body(null);
         }
-
         List<Cotas> cotas = cotaSorteioService.gerarCotasClient(userId, qtde);
         return ResponseEntity.ok(cotas);
     }

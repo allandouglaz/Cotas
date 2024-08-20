@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,27 +22,10 @@ public class CotaSorteioService {
     @Autowired
     private UserRepository userRepository;
 
-    /*
-    public List<Cotas> gerarCotasClient(Long clienteId, int quantidade) {
-        Client client = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
-        Random random = new Random();
-        List<Cotas> cotas = IntStream.range(0, quantidade)
-                .mapToObj(i -> {
-                    Cotas cota = new Cotas();
-                    cota.setCotas(Long.parseLong(String.valueOf(random.nextInt(99999))));
-                    cota.setClient(client);
-                    return cota;
-                })
-                .collect(Collectors.toList());
-        return cotaSorteioRepository.saveAll(cotas);
-    }
-     */
 
     public List<Cotas> gerarCotasClient(Long userId, int quantidade) {
-        User user = userRepository.findById(String.valueOf(userId))
-                .orElseThrow(() -> new RuntimeException("Cliente Não encontrado."));
+        User user = userRepository.findById(UUID.fromString(String.valueOf(userId)))
+                .orElseThrow(() -> new RuntimeException("Usuario Não encontrado."));
 
         Random random = new Random();
         List<Cotas> cotas = IntStream.range(0, quantidade)

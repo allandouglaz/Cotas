@@ -44,7 +44,7 @@ public class UserController {
         return "This is a protected endpoint. Only authenticated users can access this.";
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
         try {
             User savedUser = userService.save(user);
@@ -52,7 +52,7 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }
-    }
+    }*/
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
